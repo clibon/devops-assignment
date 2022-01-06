@@ -1,5 +1,7 @@
 **Package Components:**
 
+![Alt text here](SolutionDiagram.svg)
+
 _Folder Structure:_
 
 ROOT\
@@ -27,3 +29,4 @@ Nginx exposes two endpoints as follows:
 
 _Deployment Notes:_
 - Node.js V16 Image was used due to incompatibilities present in V17 (latest tag) with OpenSSL 3.0 (https://github.com/webpack/webpack/issues/14532)
+
