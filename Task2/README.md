@@ -13,7 +13,7 @@ docker push giljaniz/api_nginx:v1
 docker push giljaniz/api_flask:v1
 docker push giljaniz/api_frontend:v1
 
-_Step3:_ AWS Configuration\
+_Step3:_ AWS Configuration
 
 A t2.micro EC2 Instance was created using the Ubuntu 20.04 Base OS. Docker and Docker Compose were installed on the VM, and a security group was configured as follows:
 
