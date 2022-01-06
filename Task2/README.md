@@ -1,4 +1,4 @@
-Since the output from Task1 consistent in dockerising the applications, the same images can be used on other Docker installations such as Cloud Infrastructure.
+Since the output from Task1 consisted in dockerising the applications, the same images can be used on other Docker installations such as Cloud Infrastructure.
 
 The images created in Task 1 were tagged and uploaded to a public Docker Hub repository.
 
