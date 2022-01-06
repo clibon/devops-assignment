@@ -1,0 +1,110 @@
+---
+#Deployment Manifest for Backend Service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flaskapp-deployment
+  labels:
+    app: flaskapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flaskapp
+  template:
+    metadata:
+      labels:
+        app: flaskapp
+    spec:
+      containers:
+      - name: flask-app
+        image: giljaniz/api_flask:v1
+        ports:
+        - containerPort: 5000
+---
+#Service Manifest for the Backend Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask
+spec:
+  selector:
+    app: flaskapp
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+---
+#Deployment Manifest for Frontend Service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  labels:
+    app: frontendapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontendapp
+  template:
+    metadata:
+      labels:
+        app: frontendapp
+    spec:
+      containers:
+      - name: react-frontend
+        image: giljaniz/api_frontend:v1
+        ports:
+        - containerPort: 3000
+---
+#Service Manifest for the Frontend App Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  selector:
+    app: frontendapp
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+---
+#Deployment Manifest for Proxy Service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx-flask
+        image: giljaniz/api_nginx:v1
+        ports:
+        - containerPort: 80
+---
+#Service Manifest for the Proxy Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+spec:
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port:  80
+      targetPort: 80
+  externalIPs:
+    - "192.168.3.105"                            
